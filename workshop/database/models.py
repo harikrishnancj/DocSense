@@ -12,8 +12,9 @@ class Document(Base):
     rag_response = Column(Text, nullable=True)
     entities = Column(Text, nullable=True)
     visuals = Column(Text, nullable=True)
+    extracted_images = Column(Text, nullable=True)        # JSON list of paths
+    image_descriptions = Column(Text, nullable=True)      # JSON list
+    extracted_tables = Column(Text, nullable=True)        # JSON list of dicts
+    image_insights = Column(Text, nullable=True) 
     created_at = Column(TIMESTAMP, server_default=func.now())
-   # ocr_text = Column(Text, nullable=True)#
-   # image_previews = Column(Text, nullable=True)#
-    #chart_candidates = Column(Text, nullable=True)#
 

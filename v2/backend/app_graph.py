@@ -10,8 +10,8 @@ from states.visualizer import Visualizer
 from dotenv import load_dotenv
 load_dotenv()
 
-
 graph = StateGraph(DocState)
+
 
 graph.add_node("load_file", Loader)
 graph.add_node("build_index", build_index)
@@ -19,7 +19,6 @@ graph.add_node("summarize_text", Summarizer)
 graph.add_node("rag", Rag)
 graph.add_node("extract_entities", EntityExtractor)
 graph.add_node("visualize_entities", Visualizer)
-
 
 
 graph.add_edge(START, "load_file")
@@ -38,6 +37,7 @@ graph.add_edge("summarize_text", "extract_entities")
 graph.add_edge("rag", "extract_entities")
 graph.add_edge("extract_entities", "visualize_entities")
 graph.add_edge("visualize_entities", END)
+
 app_graph = graph.compile(checkpointer=None)
 
 

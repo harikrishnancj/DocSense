@@ -476,3 +476,62 @@ def Loader(state: DocState):
     state.documents = reader.load_data()
     return state
 
+'''from langsmith import traceable
+from llama_index.core import Document
+from states.doc_state import DocState
+from model.vision import describe_image_gpt4o
+
+import os
+import fitz  # PyMuPDF
+import pandas as pd
+import pytesseract
+from PIL import Image
+from docx import Document as DocxReader
+from pptx import Presentation
+
+SUPPORTED_EXT = {
+    ".pdf", ".txt", ".csv", ".xlsx", ".xls",
+    ".docx", ".pptx", ".png", ".jpg", ".jpeg"
+}
+
+@traceable(name="loader")
+def Loader(state: DocState):
+    """Universal loader: PDFs, Excel, Images, CSV, DOCX, PPTX with table & image extraction."""
+    
+    folder = state.folder_path
+    os.makedirs(folder, exist_ok=True)
+
+    documents = []
+
+    for filename in os.listdir(folder):
+        path = os.path.join(folder, filename)
+        ext = os.path.splitext(filename)[1].lower()
+
+        if ext not in SUPPORTED_EXT:
+            print(f"⚠ Skipping unsupported file: {filename}")
+            continue
+
+        if ext == ".pdf":
+            documents.extend(load_pdf(path))
+
+        elif ext in [".xlsx", ".xls"]:
+            documents.extend(load_excel(path))
+
+        elif ext == ".csv":
+            documents.append(load_csv(path, filename))
+
+        elif ext == ".txt":
+            documents.append(load_txt(path, filename))
+
+        elif ext == ".docx":
+            documents.append(load_docx(path, filename))
+
+        elif ext == ".pptx":
+            documents.append(load_pptx(path, filename))
+
+        elif ext in [".png", ".jpg", ".jpeg"]:
+            documents.append(load_image(path, filename))
+
+    state.documents = documents
+    return state
+'''

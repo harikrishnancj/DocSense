@@ -11,3 +11,6 @@ class DocState(BaseModel):
     rag_response: str = ""
     use_rag: bool = False
     index: Any = None
+    ocr_text: str = ""#
+    image_previews: list = []#
+    chart_candidates: list = []#
